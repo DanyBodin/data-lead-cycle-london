@@ -4,7 +4,7 @@ import os
 import boto3
 from app.train import load_data
 
-# Test data loadin
+# Test data loading
 @pytest.fixture
 def sample_dataset():
     bucket_name = "tfl-cycle"
