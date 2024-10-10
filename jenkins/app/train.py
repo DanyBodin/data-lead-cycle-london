@@ -20,7 +20,14 @@ def load_data(bucket_name, folder_name):
     Returns:
         pd.DataFrame: Loaded dataset.
     """
-    s3_client = boto3.client("s3", region_name="eu-west-3")
+
+    session = boto3.Session(
+    aws_access_key_id = os.environ["AWS_ACCESS_KEY_ID"],
+    aws_secret_access_key = os.environ["AWS_SECRET_ACCESS_KEY"],
+    region_name="eu-west-3"
+)
+
+    s3_client = session.client('s3')
 
     response = s3_client.list_objects_v2(Bucket=bucket_name, Prefix=folder_name)
 
