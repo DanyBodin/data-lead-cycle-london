@@ -21,7 +21,7 @@ def load_data(bucket_name, folder_name):
     """
     s3_client = boto3.client("s3", region_name="eu-west-3")
 
-    response = s3_client.list_objects_v2(Bucket=bucket_name, Prefix=folder_path)
+    response = s3_client.list_objects_v2(Bucket=bucket_name, Prefix=folder_name)
 
     parquet_files = [content['Key'] for content in response.get('Contents', []) if content['Key'].endswith('.parquet')]
 
@@ -32,3 +32,9 @@ def load_data(bucket_name, folder_name):
         df_list.append(df)
 
     return df_list[0]
+
+if __name__ == "__main__":
+    experiment_name = "tfl-cycle-assertion"
+    bucket_name = "tfl-cycle"
+    folder_name = "silver"
+    load_data(bucket_name, folder_name)
