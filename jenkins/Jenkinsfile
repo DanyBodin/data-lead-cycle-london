@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the code from the repository
-                git branch: 'jenkins', url: 'https://github.com/DanyBodin/data-lead-cycle-london/tree/jenkins/jenkins.git'
+                git branch: 'jenkins', url: 'https://github.com/DanyBodin/data-lead-cycle-london.git'
             }
         }
 
