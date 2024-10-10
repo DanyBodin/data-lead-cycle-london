@@ -3,6 +3,7 @@ import numpy as np
 import mlflow
 import time
 import boto3
+import os
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestRegressor
