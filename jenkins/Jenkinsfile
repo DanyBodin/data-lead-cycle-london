@@ -41,7 +41,7 @@ pipeline {
                     sh '''
                     docker run --rm --env-file env.list \
                     jenkins \
-                    bash -c "pytest tfl_pipeline.py --maxfail=1 --disable-warnings"
+                    bash -c "pytest tests/tfl_pipeline.py --maxfail=1 --disable-warnings"
                     '''
                 }
             }
