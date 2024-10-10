@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the code from the repository
-                git branch: 'jenkins', url: 'https://github.com/DanyBodin/data-lead-cycle-london.git'
+                git branch: 'jenkins', url: 'https://github.com/DanyBodin/data-lead-cycle-london/tree/jenkins/jenkins.git'
             }
         }
 
@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image using the Dockerfile
-                    sh 'docker build -t ml-pipeline-image .'
+                    sh 'docker build -t .'
                 }
             }
         }
