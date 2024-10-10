@@ -1,12 +1,15 @@
-FROM jenkins/jenkins:2.462.1-jdk17
-USER root
-RUN apt-get update && apt-get install -y lsb-release
-RUN curl -fsSLo /usr/share/keyrings/docker-archive-keyring.asc \
-  https://download.docker.com/linux/debian/gpg
-RUN echo "deb [arch=$(dpkg --print-architecture) \
-  signed-by=/usr/share/keyrings/docker-archive-keyring.asc] \
-  https://download.docker.com/linux/debian \
-  $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
-RUN apt-get update && apt-get install -y docker-ce-cli
-USER jenkins
-RUN jenkins-plugin-cli --plugins "blueocean docker-workflow"
+FROM continuumio/miniconda3
+
+WORKDIR /home
+ENV PYTHONPATH=/home
+
+RUN apt-get update
+RUN apt-get install nano unzip
+RUN apt install curl -y
+
+RUN curl -fsSL https://get.deta.dev/cli.sh | sh
+
+COPY . .
+RUN pip install -r requirements.txt
+
+CMD ["python", "app/train.py"]
