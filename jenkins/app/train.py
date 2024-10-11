@@ -5,7 +5,7 @@ import time
 import boto3
 import os
 # Load data
-def load_data(bucket_name):
+def load_data():
     """
     Load dataset from the given URL.
 
