@@ -22,7 +22,7 @@ def load_data(bucket_name, folder_name):
     """
 
     session = boto3.Session(
-    aws_access_key_id = os.environ["AWS_ACCESS_KEY_ID"],
+    aws_access_key_id = "AKIAYYBA2QO3ADBDBH42",
     aws_secret_access_key = os.environ["AWS_SECRET_ACCESS_KEY"],
     region_name="eu-west-3"
 )
