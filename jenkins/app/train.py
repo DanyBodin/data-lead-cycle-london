@@ -22,9 +22,18 @@ def load_data(bucket_name, folder_name):
     region_name="eu-west-3"
 )
 
-    s3_client = session.client('s3')
+    ressources = session.resource('s3')
+    bucket = ressources.Bucket(bucket_name)
 
-    return s3_client
+    parquet_files = [obj.key for obj in bucket.objects.all()]
+
+    df_list = []
+    for file in parquet_files:
+        file_path = f"s3://{bucket_name}/{file}"
+        df = pd.read_parquet(file_path, engine='pyarrow')
+        df_list.append(df)
+
+    return df_list[0]
 
 if __name__ == "__main__":
     experiment_name = "tfl-cycle-assertion"
