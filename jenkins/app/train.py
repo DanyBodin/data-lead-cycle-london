@@ -4,8 +4,6 @@ import mlflow
 import time
 import boto3
 import os
-
-
 # Load data
 def load_data(bucket_name, folder_name):
     """
@@ -19,7 +17,7 @@ def load_data(bucket_name, folder_name):
     """
 
     session = boto3.Session(
-    aws_access_key_id = "AKIAYYBA2QO3ADBDBH42",
+    aws_access_key_id = os.environ["AWS_ACCESS_KEY_ID"],
     aws_secret_access_key = os.environ["AWS_SECRET_ACCESS_KEY"],
     region_name="eu-west-3"
 )
@@ -33,7 +31,7 @@ def load_data(bucket_name, folder_name):
     df_list = []
     for file in parquet_files:
         file_path = f"s3://{bucket_name}/{file}"
-        df = pd.read_parquet(file_path, engine='pyarrow', storage_options={"key": "AKIAYYBA2QO3ADBDBH42", "secret": os.environ["AWS_SECRET_ACCESS_KEY"]})
+        df = pd.read_parquet(file_path, engine='pyarrow', storage_options={"key": os.environ["AWS_ACCESS_KEY_ID"], "secret": os.environ["AWS_SECRET_ACCESS_KEY"]})
         df_list.append(df)
 
     return df_list[0]
