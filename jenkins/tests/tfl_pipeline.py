@@ -7,8 +7,7 @@ from app.train import load_data
 # Test data loading
 @pytest.fixture
 def sample_dataset():
-    bucket_name = "tfl-cycle"
-    df = load_data(bucket_name)
+    df = load_data()
     return df
 
 def test_load_data(sample_dataset):
