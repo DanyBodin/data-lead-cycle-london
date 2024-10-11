@@ -22,9 +22,7 @@ def load_data(bucket_name):
     region_name="eu-west-3"
 )
 
-    ressources = session.resource('s3',
-                                  aws_access_key_id=os.environ["AWS_ACCESS_KEY_ID"],
-                                  aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"])
+    ressources = session.resource('s3')
     bucket = ressources.Bucket(bucket_name)
 
     parquet_files = [obj.key for obj in bucket.objects.all()]
