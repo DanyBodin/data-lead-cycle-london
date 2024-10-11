@@ -21,8 +21,6 @@ pipeline {
         stage('Run Tests Inside Docker Container') {
             steps {
                 withCredentials([
-                    string(credentialsId: 'aws-access-key-id', variable: 'AWS_ACCESS_KEY_ID'),
-                    string(credentialsId: 'aws-secret-acces-key', variable: 'AWS_SECRET_ACCESS_KEY'),
                     string(credentialsId: 'backend-store-uri', variable: 'BACKEND_STORE_URI'),
                     string(credentialsId: 'artifact-root', variable: 'ARTIFACT_ROOT')
                 ]) {
@@ -30,8 +28,6 @@ pipeline {
                     // KEEP SINGLE QUOTE FOR SECURITY PURPOSES (MORE INFO HERE: https://www.jenkins.io/doc/book/pipeline/jenkinsfile/#handling-credentials)
                     script {
                         writeFile file: 'env.list', text: '''
-                        AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-                        AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
                         BACKEND_STORE_URI=$BACKEND_STORE_URI
                         ARTIFACT_ROOT=$ARTIFACT_ROOT
                         '''
