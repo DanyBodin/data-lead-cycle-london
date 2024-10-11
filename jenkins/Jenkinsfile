@@ -39,8 +39,7 @@ pipeline {
 
                     // Run a temporary Docker container and pass env variables securely via --env-file
                     sh '''
-                    docker run
-                    jenkins \
+                    docker run jenkins \
                     bash -c "pytest tests/tfl_pipeline.py --maxfail=1 --disable-warnings"
                     docker run --rm --env-file env.list \
                     '''
