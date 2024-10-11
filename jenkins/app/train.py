@@ -4,10 +4,7 @@ import mlflow
 import time
 import boto3
 import os
-from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.preprocessing import StandardScaler
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.pipeline import Pipeline
+
 
 # Load data
 def load_data(bucket_name, folder_name):
@@ -36,7 +33,7 @@ def load_data(bucket_name, folder_name):
     df_list = []
     for file in parquet_files:
         file_path = f"s3://{bucket_name}/{file}"
-        df = pd.read_parquet(file_path, engine='pyarrow', storage_options={"key": os.environ["AWS_ACCESS_KEY_ID"], "secret": os.environ["AWS_SECRET_ACCESS_KEY"]})
+        df = pd.read_parquet(file_path, engine='pyarrow', storage_options={"key": "AKIAYYBA2QO3ADBDBH42", "secret": os.environ["AWS_SECRET_ACCESS_KEY"]})
         df_list.append(df)
 
     return df_list[0]
